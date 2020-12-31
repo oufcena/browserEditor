@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<style>
+#editor {
+  border: 2px solid black;
+  padding: 10px;
+  margin: 20px 0;
+  resize: both;
+  overflow: auto;
+}
+</style>
+<body>
+
+<h1 onmouseover="mouseOver(this)" onmouseout="mouseOut(this);" contenteditable="true">Real-time HTML text Editor!</h1>
+
+<div id="browser"></div>
+
+<div id="editor" contenteditable="true" onkeydown="editor(event, this)">
+Write HTML code here! Press enter to see the output result!</div>
+
+<script>
+function editor(e, editor) {
+  if (e.keyCode === 13) {
+    document.getElementById('browser').innerHTML += editor.textContent;
+  }
+  browser();
+}
+function mouseOver(x) {
+  x.textContent = x.outerHTML;
+  x.style.fontSize = "20px";
+  x.style.color = "black";
+  x.style.backgroundColor = "yellow";
+}
+function mouseOut(x) {
+  x.outerHTML = x.textContent;
+}
+function browser() {
+  var browser = document.getElementById("browser").children;
+  for(let i=0, length=browser.length; i<length; i++) {
+    browser[i].setAttribute("contenteditable", "true");
+    browser[i].setAttribute("onmouseover", "mouseOver(this)");
+    browser[i].setAttribute("onmouseout", "mouseOut(this)");
+  }
+}
+</script>
+</body>
+</html>
+
+
